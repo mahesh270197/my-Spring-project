@@ -13,9 +13,9 @@ import com.projects.banking.service.AccountService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Timer;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,9 +40,9 @@ public class AcoountServicermpl implements AccountService {
     }
 
     @Override
-    public AccountDto getAccountById(long id) {
+    public Optional<AccountDto> getAccountById(long id) {
              Account account =accountrepository.findById(id).orElseThrow(()-> new AccountException("Account does not exists"));
-             return  AccountMapper.mapToAccountDto(account);
+             return Optional.of(AccountMapper.mapToAccountDto(account));
     }
 
     @Override

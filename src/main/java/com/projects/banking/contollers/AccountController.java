@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -27,8 +29,8 @@ public class AccountController {
     }
     @GetMapping("/{id}")
     public  ResponseEntity<AccountDto> getaccountById( @PathVariable long id){
-        AccountDto accountDto = accountService.getAccountById(id);
-        return  ResponseEntity.ok(accountDto);
+        Optional<AccountDto> accountDto = accountService.getAccountById(id);
+        return  accountDto.map(emp ->ResponseEntity.ok(emp)).orElseThrow(()->  new NoSuchElementException());
     }
     @PutMapping("/{id}/deposit")
     public  ResponseEntity<AccountDto>depositamt( @PathVariable long id , @RequestBody Map<String, Double> request){
