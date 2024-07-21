@@ -4,6 +4,7 @@ import com.projects.banking.dto.AccountDto;
 import com.projects.banking.dto.FundTrasferDto;
 import com.projects.banking.dto.TransactionDto;
 import com.projects.banking.service.AccountService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class AccountController {
         this.accountService = accountService;
     }
     @PostMapping
-    public ResponseEntity<AccountDto> addAccount( @RequestBody AccountDto accountDto){
+    public ResponseEntity<AccountDto> addAccount( @RequestBody @Valid AccountDto accountDto){
            return new ResponseEntity<>( accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
     @GetMapping("/{id}")

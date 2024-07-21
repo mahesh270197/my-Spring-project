@@ -1,5 +1,6 @@
 package com.projects.banking.service.impl;
 
+import com.projects.banking.annotations.TransactionTypeValidation;
 import com.projects.banking.dto.AccountDto;
 import com.projects.banking.dto.TransactionDto;
 import com.projects.banking.entity.Account;
@@ -20,8 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class AcoountServicermpl implements AccountService {
 
-
-    private static final String TRANSACTION_TYPE_DEPOSIT = "DEPOSIT";
+@TransactionTypeValidation
+    private static final String TRANSACTION_TYPE_DEPOSIT = "DEPOSI";
     private static final String TRANSACTION_TYPE_WITHDRAW = "WITHDRAW";
     private AccountRepository accountrepository;
     private TransactionRepository transactionRepository;
